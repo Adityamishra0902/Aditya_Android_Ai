@@ -72,12 +72,28 @@ public class MainActivity extends AppCompatActivity {
     public void newMatch() {  //A game is composed of three matches
 
         int operand1 = random.nextInt(10);
-        int operand2=0;
-        //check is operand2 is not zero; otherwise in case of division-divide by zero error will come
+        int operand2=random.nextInt(10);
+        int correctanswer=-100;
         String operator = operators[random.nextInt(4)];
         textView2.setText(operand1 + operator + operand2);
-
-      // Your code here, to diplay correct and incorrect options on the buttons
+        button1.setText(operand1 + operand2 + "");
+        button2.setText(operand1 - operand2 + "");
+        button3.setText(operand1 * operand2 + "");
+        button4.setText(operand1 / operand2 + "");
+        if(operator.equals('*'))
+        {
+            correctanswer=operand1*operand2;
+        }
+        else if(operator.equals('+'))
+        {
+            correctanswer=operand1+operand2;
+        }
+        else if(operator.equals('-'))
+        {
+            correctanswer=operand1-operand2;
+        }
+        else
+           correctanswer=operand1/operand2;
 
         if(matchCounter==3){    // if three matches are completed updatee the perfomrance in sharedpreferences
 
@@ -95,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
     public int sumOfScore(){
         //Computing the sum of score array, which has the 1 or in each index,depending on correct or incorrect answers
         int sum=0;
-       // your code here
+        int i;
+        for(i=0; i<score.length;i++)
+            sum+=score[i];
         return sum;
     }
 
